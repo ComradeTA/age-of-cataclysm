@@ -1,10 +1,10 @@
 
 class GameData():
-    def __init__(self, seed, connected_client_ids = [], active_enemy_ids = [], cached_player_ids = ()):
+    def __init__(self, seed):
         self.seed = seed
-        self.connected_client_ids = connected_client_ids
-        self.active_enemy_ids = active_enemy_ids
-        self.cached_player_ids = cached_player_ids
+        self.connected_client_ids = []
+        self.active_enemy_ids = []
+        self.cached_player_ids = []
         self.characters = {}
         self.pawns = {}
         self.actors = {}
@@ -13,10 +13,10 @@ class GameData():
     def __str__(self):
         return str(self.name) + str(self.characters)
 
-    def add_player(self, character):
+    def add_character(self, character):
         self.characters.append(character)
 
-    def remove_player(self, character):
+    def remove_character(self, character):
         self.characters.remove(character)
 
     def add_pawn(self, pawn):
@@ -37,4 +37,9 @@ class GameData():
     def remove_building(self, building):
         self.characters.remove(building)
     
+    def add_client_id(self, client_id):
+        self.connected_client_ids.append(client_id)
+
+    def remove_client_id(self, client_id):
+        self.connected_client_ids.remove(client_id)
         

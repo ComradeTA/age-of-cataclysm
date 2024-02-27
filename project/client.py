@@ -24,7 +24,7 @@ h = pygame.display.Info().current_h
 game_display = pygame.display.set_mode((w,h),pygame.FULLSCREEN)
 w = 500
 h = 500
-game_display = pygame.display.set_mode((w,h))
+game_display = pygame.display.set_mode((w,h), pygame.)
 #_______________________
 
 CharacterDatabase = CharacterDatabase()

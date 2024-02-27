@@ -4,8 +4,12 @@ import pickle
 from gameworldDefaults.game import Game
 import time
 
+server_game = Game("testServer", 123, 123)
+
+
+
 class Server_Client:
-    def __init__(self, addr, p, gameId = None):
+    def __init__(self, addr, p, gameId = 123):
         self.addr = addr
         self.p = p
         self.gameId = gameId
@@ -39,6 +43,7 @@ games = {}
 idCount = 0
 p = 0
 
+games[123] = server_game
 
 
 def threaded_client(key):
@@ -87,7 +92,7 @@ def threaded_client(key):
 
         for key in games:
                 print(games[key])
-                if len(games[key].gameData.characters) == 0:
+                if len(games[key].gameData.characters) == -1:
                     game_name = games[key].name
                     game_pop = key
                     continue
@@ -163,6 +168,7 @@ while True:
                 s.sendto(pickle.dumps(return_data), addr)
                 connected.remove(addr)
                 print("player", str(data[0]), "failed to join game:", data[2], "because that game does not exist")
+                print ("games " + str(games))
                 break
         continue
                 

@@ -2,11 +2,9 @@ from gameworldDefaults.character import Character
 from gameworldDefaults.gameData import GameData
 
 class Game():
-    def __init__(self, name, seed, id, host, multiplayer=False):
+    def __init__(self, name, seed, id):
         self.name = name
         self.id = id
-        self.host = host
-        self.multiplayer = multiplayer
         self.gameData = GameData(seed)
         
     def __str__(self):
@@ -19,11 +17,7 @@ class Game():
             if character.id == p:
                 character.character_move(move)
 
-    def add_player(self, p, n):
-        self.gameData.add_player(Character(p, n))
+    def get_gameData(self):
+        return self.gameData
 
-    def remove_player(self, p):
-        for character in self.gameData.characters:
-            if character.id == p:
-                self.gameData.remove_player(character)
         

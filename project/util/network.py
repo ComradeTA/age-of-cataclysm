@@ -8,18 +8,15 @@ class Network:
         self.server = "127.0.0.1"
         self.port = 28420
         self.addr = (self.server, self.port)
-        self.p = self.connect()
 
-    def get_P(self):
-        return self.p
 
-    def connect(self):
+    def connect(self, client_id, data):
         try:
             print("Connecting to:", self.addr)
-            self.client.sendto(pickle.dumps([None, "get"]), self.addr)
+            self.client.sendto(pickle.dumps(data), self.addr)
             print("Waiting...")
             ''
-            self.client.settimeout(5)
+            self.client.settimeout(10)
             
             try:
                 data, addr = self.client.recvfrom(2048)
@@ -28,6 +25,7 @@ class Network:
                 return
             p = pickle.loads(data)
             print("Connected.")
+            print(p)
             self.client.settimeout(None)
             return p
         except Exception as e:
